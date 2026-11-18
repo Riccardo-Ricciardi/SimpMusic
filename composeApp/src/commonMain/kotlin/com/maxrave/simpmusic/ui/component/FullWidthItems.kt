@@ -279,7 +279,10 @@ fun SongFullWidthItems(
                                 modifier = Modifier.fillMaxSize(),
                             )
                         } else if (index == null) {
-                            val thumb = track?.thumbnails?.lastOrNull()?.url ?: songEntity?.thumbnails
+                            val thumb =
+                                storedSong?.thumbnails?.takeIf { it.isNotBlank() }
+                                    ?: track?.thumbnails?.lastOrNull()?.url
+                                    ?: songEntity?.thumbnails
                             AsyncImage(
                                 model =
                                     ImageRequest
